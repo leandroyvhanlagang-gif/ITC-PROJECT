@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CodeNest is a JavaScript utility dashboard for conversion, tax, looping, and payroll tools.">
+  <title>CodeNest | JavaScript Utility Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#overview" aria-label="CodeNest home">
+        <span class="brand-mark" aria-hidden="true">cn.</span>
+        <span><strong>CodeNest</strong><small>LEANDRO’S WORKBOOK</small></span>
+      </a>
+      <div class="nav-label">CONTENTS</div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <button class="nav-link active" data-view="overview"><span class="nav-icon">⌂</span> Overview</button>
+        <button class="nav-link" data-view="conversion"><span class="nav-icon">⇄</span> Conversion</button>
+        <button class="nav-link" data-view="tax"><span class="nav-icon">₱</span> Income Tax</button>
+        <button class="nav-link" data-view="loops"><span class="nav-icon">⟳</span> Looping Exercises</button>
+        <button class="nav-link" data-view="payroll"><span class="nav-icon">▤</span> Payroll System</button>
+        <button class="nav-link" data-view="about"><span class="nav-icon">☺</span> About</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="sidebar-note">
+          <span class="note-dot"></span>
+          <div><strong>CodeNest </strong><small>HTML · CSS · JavaScript</small></div>
+        </div>
+        <p class="sidebar-foot">A project by Leandro Lagang.</p>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+        <div class="breadcrumb">Workspace <span>/</span> <strong id="currentPage">Overview</strong></div>
+        <div class="topbar-right">Intro to Computing <span>/</span> JavaScript</div>
+      </header>
+
+      <div class="page-wrap">
+        <section class="view active" id="overview">
+          <div class="workbook-heading"><span>THE JAVASCRIPT WORKBOOK</span><span>BY LEANDRO LAGANG</span></div>
+          <div class="welcome-row">
+            <div>
+              <p class="eyebrow">A SMALL COLLECTION OF USEFUL PROGRAMS</p>
+              <h1>A little logic.<br>A lot of <em>practice.</em></h1>
+              <p class="lead">Conversions, calculations, and a few things I’ve learned in class. Pick an exercise below and give it a try.</p>
+              <button class="btn btn-primary" data-go="conversion">Start with conversions <span>↗</span></button>
+            </div>
+            <aside class="margin-note"><span class="note-index">01 — 04</span><p>Same language.<br>Four different problems.</p><div class="note-rule"></div><span>Functions · Conditions<br>Loops · Arrays</span></aside>
+          </div>
+          <div class="section-heading"><h2>The exercises</h2><span class="muted">Select one to begin</span></div>
+          <div class="tool-list">
+            <button class="tool-row" data-go="conversion"><span class="tool-index">01</span><span class="tool-copy"><strong>Unit conversions</strong><span>Length, weight &amp; temperature</span></span><span class="tool-topic">Functions &amp; formulas</span><span class="tool-arrow">↗</span></button>
+            <button class="tool-row" data-go="tax"><span class="tool-index">02</span><span class="tool-copy"><strong>Income tax</strong><span>Calculate tax from the assignment table</span></span><span class="tool-topic">Conditional statements</span><span class="tool-arrow">↗</span></button>
+            <button class="tool-row" data-go="loops"><span class="tool-index">03</span><span class="tool-copy"><strong>Working with loops</strong><span>Factorial, sum &amp; average</span></span><span class="tool-topic">While · Do-while · For</span><span class="tool-arrow">↗</span></button>
+            <button class="tool-row" data-go="payroll"><span class="tool-index">04</span><span class="tool-copy"><strong>The payroll list</strong><span>Add employees and work out their pay</span></span><span class="tool-topic">Arrays &amp; objects</span><span class="tool-arrow">↗</span></button>
+          </div>
+          <div class="workbook-foot"><span>Built one exercise at a time.</span><button data-go="about">A bit about this project ↗</button></div>
+        </section>
+
+        <section class="view" id="conversion">
+          <div class="page-heading"><div><p class="eyebrow">CALCULATION TOOL</p><h1>Conversion Calculator</h1><p class="lead">Convert common units with clear, accurate results.</p></div><span class="heading-chip">01 / CONVERSION</span></div>
+          <div class="content-card calculator-card">
+            <div class="card-heading"><div><span class="mini-icon purple">⇄</span><div><h2>Unit converter</h2><p>Select a category, enter a value, and choose your units.</p></div></div></div>
+            <div class="form-grid">
+              <label class="field full-field">Conversion category
+                <select id="conversionType"><option value="length">Length</option><option value="weight">Weight</option><option value="temperature">Temperature</option></select>
+              </label>
+              <label class="field">Value
+                <input id="conversionValue" type="number" step="any" placeholder="Enter a value">
+              </label>
+              <label class="field">From
+                <select id="conversionFrom"></select>
+              </label>
+              <label class="field">To
+                <select id="conversionTo"></select>
+              </label>
+            </div>
+            <div class="button-row"><button class="btn btn-primary" id="convertButton">Convert value <span>→</span></button><button class="btn btn-secondary" id="clearConversion">Clear</button></div>
+            <div class="result-panel" id="conversionResult" aria-live="polite"><span class="result-label">CONVERSION RESULT</span><strong class="result-placeholder">Your result will appear here</strong><p>Enter a value and select the units to begin.</p></div>
+          </div>
+          <p class="helper-line">Note: Temperature conversions use the standard Celsius, Fahrenheit, and Kelvin formulas.</p>
+        </section>
+
+        <section class="view" id="tax">
+          <div class="page-heading"><div><p class="eyebrow">CALCULATION TOOL</p><h1>Income Tax Calculator</h1><p class="lead">Estimate income tax using the tax table from the assignment.</p></div><span class="heading-chip">02 / TAX</span></div>
+          <div class="two-column">
+            <div class="content-card">
+              <div class="card-heading"><div><span class="mini-icon green">₱</span><div><h2>Taxable income</h2><p>Enter your net taxable income in Philippine pesos.</p></div></div></div>
+              <label class="field">Net taxable income (₱)
+                <input id="taxableIncome" type="number" min="0" step="0.01" placeholder="e.g. 520000">
+              </label>
+              <button class="btn btn-primary full-button" id="calculateTax">Calculate income tax <span>→</span></button>
+              <div id="taxFeedback" class="feedback" aria-live="polite"></div>
+              <div class="tax-result" id="taxResult" aria-live="polite">
+                <span class="result-label">COMPUTED INCOME TAX</span><strong id="taxAmount">₱0.00</strong>
+                <div class="result-details"><div><span>Taxable income</span><strong id="taxIncomeDisplay">—</strong></div><div><span>Applicable bracket</span><strong id="taxBracketDisplay">—</strong></div></div>
+              </div>
+            </div>
+            <div class="content-card bracket-card">
+              <div class="card-heading"><div><span class="mini-icon blue">▥</span><div><h2>Tax bracket reference</h2><p>Rates and base amounts used by the calculator.</p></div></div></div>
+              <div class="bracket-list">
+                <div><span>₱0 – ₱250,000</span><strong>0%</strong></div>
+                <div><span>Over ₱250,000 – ₱400,000</span><strong>20% excess</strong></div>
+                <div><span>Over ₱400,000 – ₱800,000</span><strong>₱30,000 + 25%</strong></div>
+                <div><span>Over ₱800,000 – ₱2,000,000</span><strong>₱130,000 + 30%</strong></div>
+                <div><span>Over ₱2,000,000 – ₱8,000,000</span><strong>₱490,000 + 32%</strong></div>
+                <div><span>Over ₱8,000,000</span><strong>₱2,410,000 + 35%</strong></div>
+              </div>
+              <p class="small-note">This tool implements the figures in the assignment table. It is a classroom calculator, not tax-filing advice.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" id="loops">
+          <div class="page-heading"><div><p class="eyebrow">PROGRAMMING PRACTICE</p><h1>Looping Exercises</h1><p class="lead">Three ways to repeat a calculation: while, do-while, and for.</p></div><span class="heading-chip">03 / LOOPS</span></div>
+          <div class="loop-grid">
+            <article class="content-card loop-card"><div class="loop-top"><span class="loop-number">A</span><span class="loop-type">WHILE LOOP</span></div><h2>Nth Factorial</h2><p>Calculate the product of all positive integers from 1 to n. Zero factorial is 1.</p><label class="field">Enter integer n<input id="factorialInput" type="number" min="0" max="1000" step="1" placeholder="e.g. 5"></label><button class="btn btn-primary full-button" id="factorialButton">Calculate factorial</button><div class="exercise-result" id="factorialResult" aria-live="polite">Result will appear here.</div></article>
+            <article class="content-card loop-card"><div class="loop-top"><span class="loop-number">B</span><span class="loop-type">DO-WHILE LOOP</span></div><h2>Sum of First N Numbers</h2><p>Add every whole number from 1 up to n using a do-while loop.</p><label class="field">Enter integer n<input id="sumInput" type="number" min="1" max="100000" step="1" placeholder="e.g. 10"></label><button class="btn btn-primary full-button" id="sumButton">Calculate sum</button><div class="exercise-result" id="sumResult" aria-live="polite">Result will appear here.</div></article>
+            <article class="content-card loop-card"><div class="loop-top"><span class="loop-number">C</span><span class="loop-type">FOR LOOP</span></div><h2>Average of First N Numbers</h2><p>Find the average of the whole numbers from 1 to n using a for loop.</p><label class="field">Enter integer n<input id="averageInput" type="number" min="1" max="100000" step="1" placeholder="e.g. 10"></label><button class="btn btn-primary full-button" id="averageButton">Calculate average</button><div class="exercise-result" id="averageResult" aria-live="polite">Result will appear here.</div></article>
+          </div>
+          <p class="helper-line">Input limits: factorial n = 0–1000 (BigInt is used); sum and average n = 1–100,000.</p>
+        </section>
+
+        <section class="view" id="payroll">
+          <div class="page-heading"><div><p class="eyebrow">RECORD MANAGEMENT</p><h1>Payroll Management</h1><p class="lead">Add employee records, calculate pay, and manage the payroll list.</p></div><span class="heading-chip">04 / PAYROLL</span></div>
+          <div class="content-card payroll-form-card">
+            <div class="card-heading"><div><span class="mini-icon blue">＋</span><div><h2>Add employee</h2><p>Enter employee details to calculate gross and net pay.</p></div></div></div>
+            <form id="employeeForm">
+              <div class="payroll-fields">
+                <label class="field">Employee name<input id="employeeName" type="text" maxlength="60" placeholder="e.g. Alex Santos" required></label>
+                <label class="field">Days worked<input id="daysWorked" type="number" min="0" step="0.01" placeholder="e.g. 22" required></label>
+                <label class="field">Daily rate (₱)<input id="dailyRate" type="number" min="0" step="0.01" placeholder="e.g. 650" required></label>
+                <label class="field">Deduction amount (₱)<input id="deductionAmount" type="number" min="0" step="0.01" placeholder="e.g. 500" required></label>
+              </div>
+              <div class="form-bottom"><div class="feedback" id="payrollFeedback" aria-live="polite"></div><button class="btn btn-primary" type="submit">＋ Add employee</button></div>
+            </form>
+          </div>
+          <div class="content-card table-card">
+            <div class="table-heading"><div><h2>Payroll list</h2><p id="employeeCount">0 employees recorded</p></div><div class="delete-controls"><label class="field compact-field">Line number to delete<input id="deleteLineNumber" type="number" min="1" step="1" placeholder="e.g. 1"></label><button class="btn btn-danger" id="deleteEmployee">Delete employee</button></div></div>
+            <div class="table-wrap"><table><thead><tr><th>No.</th><th>Employee Name</th><th>Days Worked</th><th>Daily Rate</th><th>Gross Pay</th><th>Deduction</th><th>Net Pay</th></tr></thead><tbody id="payrollTableBody"><tr><td colspan="7" class="empty-state">No employees in the payroll list yet. Add an employee above to get started.</td></tr></tbody></table></div>
+            <div class="payroll-totals"><div><span>Total gross pay</span><strong id="totalGross">₱0.00</strong></div><div><span>Total deductions</span><strong id="totalDeductions">₱0.00</strong></div><div class="net-total"><span>Total net pay</span><strong id="totalNet">₱0.00</strong></div></div>
+          </div>
+          <p class="helper-line">The list is stored in a JavaScript array and will reset when the page is refreshed.</p>
+        </section>
+
+        <section class="view" id="about">
+          <div class="page-heading"><div><p class="eyebrow">ABOUT THIS PROJECT</p><h1>About CodeNest</h1><p class="lead">A class project, and a place to keep practicing.</p></div><span class="heading-chip">05 / ABOUT</span></div>
+          <div class="about-grid">
+            <div class="content-card about-profile">
+              <div class="profile-monogram" aria-label="Leandro Lagang">LL<span>Student / Developer</span></div>
+              <h2>LEANDRO YVHAN LAGANG</h2>
+              <p class="about-role">First-year Computer Science Student</p>
+              <p class="about-school">Ateneo de Davao University</p>
+            </div>
+            <div class="content-card about-text">
+              <h2>Hi, I’m Leandro.</h2>
+              <p>I’m a first-year Computer Science student at Ateneo de Davao University. CodeNest brings together my JavaScript exercises for Intro to Programming.</p>
+              <h2>Purpose of this project</h2>
+              <p>Each exercise tackles something different: converting units, choosing a tax bracket, repeating a calculation, or keeping a list of employees. This project is my way of putting those lessons into practice.</p>
+              <ul class="about-list">
+                <li><span>⇄</span> Conversion Calculator: practice with functions, formulas and input checking.</li>
+                <li><span>₱</span> Income Tax Calculator: practice with conditions and tax brackets.</li>
+                <li><span>⟳</span> Looping Exercises: practice with while, do-while and for loops.</li>
+                <li><span>▤</span> Payroll Management: practice with arrays, objects and updating the page.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </div>
+      <footer class="footer"><span>CodeNest · Ateneo de Davao University</span><span>HTML / CSS / JavaScript</span></footer>
+    </main>
+  </div>
+</body>
+</html>
